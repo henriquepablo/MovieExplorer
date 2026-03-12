@@ -10,8 +10,12 @@ export default function Layout() {
             screenOptions={{
                     headerShown: false,
                     tabBarActiveTintColor: colors.purple.light,
+                    sceneStyle: {
+                        backgroundColor: colors.gray[200],
+                    },
                     tabBarStyle: {
-                        backgroundColor: colors.gray[200]
+                        backgroundColor: colors.gray[200],
+                        borderColor: colors.gray[200],
                     }
                 }}
             > 

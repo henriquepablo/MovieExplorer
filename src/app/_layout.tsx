@@ -1,7 +1,10 @@
+import { colors } from "@/theme/colors";
 import { NunitoSans_400Regular, NunitoSans_700Bold, useFonts } from "@expo-google-fonts/nunito-sans";
 import { Rajdhani_700Bold } from "@expo-google-fonts/rajdhani";
 import { RammettoOne_400Regular } from "@expo-google-fonts/rammetto-one";
 import { Stack } from 'expo-router';
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function Layout() {
 
@@ -15,9 +18,13 @@ export default function Layout() {
     if (!fontsLoaded) {
         return null;
     }
+
     return (
-        <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <SafeAreaProvider>
+            <SafeAreaView style={{backgroundColor: colors.gray[200]}} />
+            <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
+        </SafeAreaProvider>
     );
 }
