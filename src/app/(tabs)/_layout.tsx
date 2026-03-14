@@ -16,7 +16,7 @@ export default function Layout() {
                     tabBarStyle: {
                         backgroundColor: colors.gray[200],
                         borderColor: colors.gray[200],
-                    }
+                    },
                 }}
             > 
 
@@ -47,6 +47,13 @@ export default function Layout() {
                     tabBarIcon: ({ focused }) => (
                         <BookmarksIcon color={focused ? colors.purple.light : colors.gray[500]} />
                     )
+                }}
+            />
+
+            <Tabs.Screen  
+                name="details" 
+                options={{
+                    href: null
                 }}
             />
         </Tabs>

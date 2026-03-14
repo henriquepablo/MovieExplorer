@@ -1,5 +1,6 @@
 import { colors } from "@/theme/colors";
 import { fontFamily } from "@/theme/fontFamily";
+import { router } from "expo-router";
 import { StarIcon, TrashSimpleIcon } from "phosphor-react-native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -14,7 +15,7 @@ type MovieCardProps = {
 
 export default function MovieCard({ id, title, poster_path, vote_average, release_date, screen_favorite = false }: MovieCardProps) {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => router.push({pathname: `/details`, params: { id: id }})}>
 
             <Image style={styles.backgroundImage}
                 source={{ uri: `https://image.tmdb.org/t/p/w500/${poster_path}` }}
