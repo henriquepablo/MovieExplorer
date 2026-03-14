@@ -4,6 +4,7 @@ import { StarIcon, TrashSimpleIcon } from "phosphor-react-native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type MovieCardProps = {
+    id: number;
     title: string;
     poster_path: string;
     vote_average: number;
@@ -11,7 +12,7 @@ type MovieCardProps = {
     screen_favorite?: boolean;
 }
 
-export default function MovieCard({ title, poster_path, vote_average, release_date, screen_favorite = false }: MovieCardProps) {
+export default function MovieCard({ id, title, poster_path, vote_average, release_date, screen_favorite = false }: MovieCardProps) {
     return (
         <TouchableOpacity style={styles.container}>
 

@@ -37,7 +37,8 @@ export default function Index() {
                 data={films}
                 renderItem={(film) => (
                     <MovieCard 
-                        key={film.index}
+                        key={film.item.id}
+                        id={film.item.id}
                         title={film.item.title}
                         poster_path={film.item.poster_path}
                         release_date={film.item.release_date}
