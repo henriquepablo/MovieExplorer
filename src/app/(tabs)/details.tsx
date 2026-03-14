@@ -33,14 +33,20 @@ export default function Details() {
 
             const favorites = storage ? JSON.parse(storage) : [];
 
-            const alreadyExists = favorites.find((item: any) => item === id);
+            const alreadyExists = favorites.find((item: any) => item.id === id);
 
             if (alreadyExists) {
                 console.log("Filme já favoritado");
                 return;
             }
 
-            favorites.push(id);
+            favorites.push({
+                id,
+                title: name,
+                release_date: releaseDate,
+                vote_average: voteAverage,
+                poster_path: post
+            });
 
             await AsyncStorage.setItem("@favorites", JSON.stringify(favorites));
 
@@ -68,10 +74,6 @@ export default function Details() {
 
         }, [id])
     );
-
-    useEffect(() => {
-
-    }, []);
 
     return (
         <View style={styles.container}>

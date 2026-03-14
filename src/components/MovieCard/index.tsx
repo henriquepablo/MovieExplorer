@@ -11,9 +11,10 @@ type MovieCardProps = {
     vote_average: number;
     release_date: string;
     screen_favorite?: boolean;
+    deleteFavorite?: () => void;
 }
 
-export default function MovieCard({ id, title, poster_path, vote_average, release_date, screen_favorite = false }: MovieCardProps) {
+export default function MovieCard({ id, title, poster_path, vote_average, release_date, screen_favorite = false, deleteFavorite }: MovieCardProps) {
     return (
         <TouchableOpacity style={styles.container} onPress={() => router.push({pathname: `/details`, params: { id: id }})}>
 
@@ -23,7 +24,7 @@ export default function MovieCard({ id, title, poster_path, vote_average, releas
 
             {
                 screen_favorite && 
-                <TouchableOpacity style={styles.buttonTrash}>
+                <TouchableOpacity style={styles.buttonTrash} onPress={deleteFavorite}>
                     <TrashSimpleIcon color={colors.purple.light} />
                 </TouchableOpacity>
             }
