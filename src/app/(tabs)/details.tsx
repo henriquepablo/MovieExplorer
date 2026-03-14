@@ -120,15 +120,12 @@ export default function Details() {
             <View style={styles.containerButton}>
                 <TouchableOpacity style={styles.buttonFavorite} onPress={addFavorite}>
                     <BookmarkSimpleIcon color={colors.purple.light} />
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.buttonTrailer}>
-                    <YoutubeLogoIcon color={colors.white} />
-
                     <Text style={styles.buttonTrailerText}>
-                        Assistir trailer
+                        Favoritar
                     </Text>
                 </TouchableOpacity>
+
+
             </View>
         </View>
     )
@@ -199,22 +196,14 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     buttonFavorite: {
-        width: 48,
         height: 48,
+        flex: 1,
         backgroundColor: colors.gray[300],
         borderRadius: 6,
         justifyContent: 'center',
         alignItems: "center",
-    },
-    buttonTrailer: {
-        height: 48,
-        flex: 1,
-        backgroundColor: colors.purple.base,
-        justifyContent: 'center',
-        alignItems: "center",
         flexDirection: 'row',
-        gap: 5,
-        borderRadius: 6,
+        gap: 5
     },
     buttonTrailerText: {
         color: colors.white,

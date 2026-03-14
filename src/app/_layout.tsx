@@ -20,7 +20,7 @@ export default function Layout() {
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={{backgroundColor: colors.gray[200]}} />
+            <SafeAreaView style={{backgroundColor: colors.gray[200]}} edges={["top"]}/>
             <Stack
                 screenOptions={{
                     headerShown: false,
