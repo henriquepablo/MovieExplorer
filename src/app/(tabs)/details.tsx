@@ -4,8 +4,8 @@ import { fontFamily } from "@/theme/fontFamily";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { ArrowLeftIcon, BookmarkSimpleIcon, StarIcon, YoutubeLogoIcon } from "phosphor-react-native";
-import { useCallback, useEffect, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Details() {
 
@@ -16,6 +16,24 @@ export default function Details() {
     const [voteAverage, setVoteAverage] = useState<number>(0);
     const [releaseDate, setReleaseDate] = useState<string>('');
     const [runtime, setRuntime] = useState<string>("");
+    
+    const translateX = useRef(new Animated.Value(300)).current;
+
+    const showView = () => {
+        Animated.sequence([
+            Animated.timing(translateX, {
+                toValue: 0,
+                duration: 400,
+                useNativeDriver: true
+            }),
+            Animated.delay(2000),
+            Animated.timing(translateX, {
+                toValue: 300,
+                duration: 400,
+                useNativeDriver: true
+            })
+        ]).start();
+    };
 
 
     function formatRuntime(minutes: number) {
@@ -49,6 +67,7 @@ export default function Details() {
             });
 
             await AsyncStorage.setItem("@favorites", JSON.stringify(favorites));
+            showView();
 
             console.log("Filme favoritado");
         } catch (error) {
@@ -77,6 +96,17 @@ export default function Details() {
 
     return (
         <View style={styles.container}>
+
+            <Animated.View
+                style={[
+                    styles.box,
+                    { transform: [{ translateX }] }
+                ]}
+            >
+                <Text style={styles.buttonTrailerText}>
+                    Filme favoritado
+                </Text>
+            </Animated.View>
 
             <View style={styles.containerImage}>
                 <Image
@@ -209,5 +239,17 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontFamily: fontFamily.NunitoSansBold,
         fontSize: 16
+    },
+    box: {
+        position: "absolute",
+        zIndex: 999,
+        top: 30,
+        right: 0,
+        width: 200,
+        height: 50,
+        backgroundColor: colors.gray[400],
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
